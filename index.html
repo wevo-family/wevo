@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wevo: Family Planner</title>
+<meta name="color-scheme" content="light dark">
+<style>
+:root{--bg:#FAF7F5;--surface:#FFFFFF;--text:#1C1A1F;--muted:#5E5A63;--border:#E9E3DF;--accent:#B5381A;--accent-soft:rgba(255,122,89,.14)}
+@media (prefers-color-scheme: dark){:root{--bg:#111114;--surface:#1B1A1F;--text:#F4F1EE;--muted:#A9A4AD;--border:#2C2A31;--accent:#FF7A59;--accent-soft:rgba(255,122,89,.16)}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:760px;margin:0 auto;padding:24px 16px 64px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:24px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px;color:var(--text);text-decoration:none}
+.mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#FF7A59,#FFC15E);display:grid;place-items:center;color:#111114;font-weight:800}
+select{font:inherit;font-size:15px;padding:6px 10px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--text)}
+h1{font-size:30px;line-height:1.2;margin:0 0 6px}
+h2{font-size:20px;margin:32px 0 8px}
+.updated{color:var(--muted);margin:0 0 20px;font-size:15px}
+p,li{color:var(--text)}
+ul{padding-left:22px;margin:8px 0}
+li{margin:6px 0}
+a{color:var(--accent)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:20px;margin:20px 0}
+.button{display:inline-block;background:linear-gradient(135deg,#FF7A59,#FFC15E);color:#111114;font-weight:700;text-decoration:none;padding:12px 20px;border-radius:14px;margin:8px 0}
+.muted{color:var(--muted)}
+details{border-top:1px solid var(--border);padding:12px 0}
+details:first-of-type{border-top:0}
+summary{cursor:pointer;font-weight:600}
+footer{margin-top:40px;color:var(--muted);font-size:14px;display:flex;gap:16px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><a class="brand" href="./"><span class="mark">W</span>Wevo</a>
+<label><span class="muted" style="font-size:14px">🌐 </span><select id="lang" aria-label="Language"><option value="en">English</option><option value="ru">Русский</option><option value="uk">Українська</option><option value="de">Deutsch</option><option value="es">Español</option><option value="pl">Polski</option><option value="pt-PT">Português</option></select></label></header>
+<article lang="en" data-lang="en" data-title="Wevo: Family Planner"><h1>Wevo: Family Planner</h1><div class="card"><p><a href="privacy/?lang=en">Privacy Policy</a></p><p><a href="support/?lang=en">Wevo Support</a></p></div></article><article lang="ru" data-lang="ru" data-title="Wevo: Family Planner" hidden><h1>Wevo: Family Planner</h1><div class="card"><p><a href="privacy/?lang=ru">Политика конфиденциальности</a></p><p><a href="support/?lang=ru">Поддержка Wevo</a></p></div></article><article lang="uk" data-lang="uk" data-title="Wevo: Family Planner" hidden><h1>Wevo: Family Planner</h1><div class="card"><p><a href="privacy/?lang=uk">Політика конфіденційності</a></p><p><a href="support/?lang=uk">Підтримка Wevo</a></p></div></article><article lang="de" data-lang="de" data-title="Wevo: Family Planner" hidden><h1>Wevo: Family Planner</h1><div class="card"><p><a href="privacy/?lang=de">Datenschutzerklärung</a></p><p><a href="support/?lang=de">Wevo-Support</a></p></div></article><article lang="es" data-lang="es" data-title="Wevo: Family Planner" hidden><h1>Wevo: Family Planner</h1><div class="card"><p><a href="privacy/?lang=es">Política de privacidad</a></p><p><a href="support/?lang=es">Soporte de Wevo</a></p></div></article><article lang="pl" data-lang="pl" data-title="Wevo: Family Planner" hidden><h1>Wevo: Family Planner</h1><div class="card"><p><a href="privacy/?lang=pl">Polityka prywatności</a></p><p><a href="support/?lang=pl">Pomoc Wevo</a></p></div></article><article lang="pt-PT" data-lang="pt-PT" data-title="Wevo: Family Planner" hidden><h1>Wevo: Family Planner</h1><div class="card"><p><a href="privacy/?lang=pt-PT">Política de privacidade</a></p><p><a href="support/?lang=pt-PT">Suporte do Wevo</a></p></div></article>
+<footer><a href="privacy/">Privacy</a><a href="support/">Support</a><span>© 2026 Dariia Kos</span></footer>
+</div>
+<script>
+(function(){
+  var langs=["en","ru","uk","de","es","pl","pt-PT"], arts=document.querySelectorAll('article[data-lang]'), sel=document.getElementById('lang');
+  function pick(){
+    var q=new URLSearchParams(location.search).get('lang'); if(q&&langs.indexOf(q)>=0)return q;
+    try{var s=localStorage.getItem('wevo-lang'); if(s&&langs.indexOf(s)>=0)return s;}catch(e){}
+    var nav=navigator.languages||[navigator.language||'en'];
+    for(var i=0;i<nav.length;i++){var l=(nav[i]||'').toLowerCase(); if(l.indexOf('pt')===0)return 'pt-PT';
+      for(var j=0;j<langs.length;j++){if(l.split('-')[0]===langs[j].toLowerCase())return langs[j];}}
+    return 'en';
+  }
+  function show(l){arts.forEach(function(a){a.hidden=a.getAttribute('data-lang')!==l;});document.documentElement.lang=l;sel.value=l;
+    var a=document.querySelector('article[data-lang="'+l+'"]'); if(a&&a.dataset.title)document.title=a.dataset.title;}
+  sel.addEventListener('change',function(){try{localStorage.setItem('wevo-lang',sel.value);}catch(e){} show(sel.value);
+    var u=new URL(location.href);u.searchParams.set('lang',sel.value);history.replaceState(null,'',u);});
+  show(pick());
+})();
+</script>
+</body>
+</html>
